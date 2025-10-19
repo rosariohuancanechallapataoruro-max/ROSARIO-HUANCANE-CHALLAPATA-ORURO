@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Rosario Challapata</title>
+
+  <!-- Fuente moderna -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Iconos -->
+  <script src="https://kit.fontawesome.com/3f4e1f9b1a.js" crossorigin="anonymous"></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f1e6;
+      color: #4b2e1e;
+    }
+
+    /* Encabezado */
+    header {
+      background: linear-gradient(to right, rgba(139, 94, 60, 0.95), rgba(75, 46, 30, 0.98));
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(6px);
+    }
+    header h1 { font-size: 2em; font-weight: 700; margin-bottom: 10px; text-transform: uppercase; }
+    nav { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
+    nav a { text-decoration: none; color: white; font-weight: 600; transition: 0.3s; }
+    nav a:hover { color: #ffcc70; }
+
+    /* Contenido */
+    main {
+      padding: 160px 20px 80px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    h2 { text-align: center; font-size: 2em; margin: 50px 0 25px; color: #8b5e3c; }
+
+    /* Productos */
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+    .product {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: 0.3s;
+    }
+    .product:hover { transform: translateY(-5px); }
+    .product img {
+      width: 100%;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .product h3 { margin-bottom: 10px; font-size: 1.3em; color: #4b2e1e; }
+
+    .product select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      background: rgba(139, 94, 60, 0.3);
+      border: 2px solid #8b5e3c;
+      color: #4b2e1e;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-comprar {
+      display: inline-block;
+      background: #8b5e3c;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn-comprar:hover { background: #ffcc70; color: #4b2e1e; }
+
+    /* Carrito flotante */
+    .carrito-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #8b5e3c;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 1.5em;
+      cursor: pointer;
+      z-index: 2100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .carrito-btn:hover { background: #ffcc70; color: #4b2e1e; }
+
+    .contador {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      padding: 4px 7px;
+      font-size: 0.8em;
+      font-weight: bold;
+    }
+
+    /* Notificación */
+    .notificacion {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      background: #4b2e1e;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 10px;
+      display: none;
+      z-index: 2200;
+    }
+
+    footer {
+      background: #8b5e3c;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header>
+    <h1>Tienda Rosario Challapata</h1>
+    <nav>
+      <a href="rosario3.html">Inicio</a>
+      <a href="eventos.html">Eventos</a>
+      <a href="galeria.html">Galería</a>
+      <a href="novedades.html">Novedades</a>
+      <a href="historia.html">Historia</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- LÁCTEOS -->
+    <h2>Lácteos</h2>
+    <div class="product-list">
+      <div class="product">
+        <img src="leche.jpg" alt="Leche">
+        <h3>Leche</h3>
+        <select id="tipoLeche" onchange="mostrarCantidad('tipoLeche','cantidadLeche')">
+          <option value="">Seleccione tipo</option>
+          <option value="Fresca">Fresca</option>
+          <option value="En Polvo">En Polvo</option>
+        </select>
+        <select id="cantidadLeche" style="display:none">
+          <option value="">Seleccione cantidad</option>
+          <option>1 litro</option>
+          <option>2 litros</option>
+          <option>250 g</option>
+          <option>500 g</option>
+          <option>1 kg</option>
+        </select>
+        <span class="btn-comprar" onclick="addToCart('Leche','tipoLeche','cantidadLeche')">Comprar</span>
+      </div>
+
+      <div class="product">
+        <img src="queso.jpg" alt="Queso">
+        <h3>Queso</h3>
+        <select id="tipoQueso" onchange="mostrarCantidad('tipoQueso','cantidadQueso')">
+          <option value="">Seleccione tipo</option>
+          <option value="Vaca">De vaca</option>
+          <option value="Oveja">De oveja</option>
+        </select>
+        <select id="cantidadQueso" style="display:none">
+          <option value="">Seleccione cantidad</option>
+          <option>1/2 kg</option>
+          <option>1 kg</option>
+          <option>2 kg</option>
+        </select>
+        <span class="btn-comprar" onclick="addToCart('Queso','tipoQueso','cantidadQueso')">Comprar</span>
+      </div>
+
+      <div class="product">
+        <img src="requeson.jpg" alt="Requesón">
+        <h3>Requesón</h3>
+        <select id="cantidadRequeson">
+          <option value="">Seleccione cantidad</option>
+          <option>1/2 kg</option>
+          <option>1 kg</option>
+        </select>
+        <span class="btn-comprar" onclick="addToCart('Requesón',null,'cantidadRequeson')">Comprar</span>
+      </div>
+
+      <div class="product">
+        <img src="yogurt.jpg" alt="Yogurt">
+        <h3>Yogurt</h3>
+        <select id="saborYogurt" onchange="mostrarCantidad('saborYogurt','cantidadYogurt')">
+          <option value="">Seleccione sabor</option>
+          <option value="Natural">Natural</option>
+          <option value="Frutilla">Frutilla</option>
+          <option value="Durazno">Durazno</option>
+          <option value="Mora">Mora</option>
+        </select>
+        <select id="cantidadYogurt" style="display:none">
+          <option value="">Seleccione cantidad</option>
+          <option>1 vaso</option>
+          <option>1 litro</option>
+          <option>2 litros</option>
+        </select>
+        <span class="btn-comprar" onclick="addToCart('Yogurt','saborYogurt','cantidadYogurt')">Comprar</span>
+      </div>
+    </div>
+
+    <!-- CÁRNICOS -->
+    <h2>Cárnicos</h2>
+    <div class="product-list">
+      <div class="product">
+        <img src="charque.jpg" alt="Charque">
+        <h3>Charque</h3>
+        <select id="tipoCharque" onchange="mostrarCantidad('tipoCharque','cantidadCharque')">
+          <option value="">Seleccione tipo</option>
+          <option value="Vaca">De vaca</option>
+          <option value="Llama">De llama</option>
+        </select>
+        <select id="cantidadCharque" style="display:none">
+          <option value="">Seleccione cantidad</option>
+          <option>250 g</option>
+          <option>500 g</option>
+          <option>1 kg</option>
+        </select>
+        <span class="btn-comprar" onclick="addToCart('Charque','tipoCharque','cantidadCharque')">Comprar</span>
+      </div>
+
+      <div class="product">
+        <img src="vacas.jpg" alt="Venta de vacas">
+        <h3>Venta de vacas</h3>
+        <select id="tipoVaca" onchange="mostrarCantidad('tipoVaca','cantidadVaca')">
+          <option value="">Seleccione tipo</option>
+          <option value="Ternero">Ternero</option>
+          <option value="Vaquillona">Vaquillona</option>
+          <option value="Toro">Toro</option>
+        </select>
+        <select id="cantidadVaca" style="display:none">
+          <option value="">Seleccione cantidad</option>
+          <option>1 unidad</option>
+          <option>2 unidades</option>
+          <option>5 unidades</option>
+        </select>
+        <span class="btn-comprar" onclick="addToCart('Venta de vacas','tipoVaca','cantidadVaca')">Comprar</span>
+      </div>
+    </div>
+
+    <!-- GRAINS AND LEGUMES -->
+    <h2>Granos y Legumbres</h2>
+    <div class="product-list">
+      <div class="product">
+        <img src="quinua.jpg" alt="Quinua">
+        <h3>Quinua</h3>
+        <select id="tipoQuinua" onchange="mostrarCantidad('tipoQuinua','cantidadQuinua')">
+          <option value="">Seleccione tipo</option>
+          <option value="Real">Real</option>
+          <option value="Negra">Negra</option>
+          <option value="Roja">Roja</option>
+        </select>
+        <select id="cantidadQuinua" style="display:none">
+          <option value="">Seleccione cantidad</option>
+          <option>1 kg</option>
+          <option>2 kg</option>
+          <option>5 kg</option>
+        </select>
+        <span class="btn-comprar" onclick="addToCart('Quinua','tipoQuinua','cantidadQuinua')">Comprar</span>
+      </div>
+
+      <div class="product">
+        <img src="cebada.jpg" alt="Cebada">
+        <h3>Cebada</h3>
+        <select id="cantidadCebada">
+          <option value="">Seleccione cantidad</option>
+          <option>1 kg</option>
+          <option>2 kg</option>
+          <option>5 kg</option>
+        </select>
+        <span class="btn-comprar" onclick="addToCart('Cebada',null,'cantidadCebada')">Comprar</span>
+      </div>
+
+      <div class="product">
+        <img src="haba.jpg" alt="Haba">
+        <h3>Haba</h3>
+        <select id="tipoHaba" onchange="mostrarCantidad('tipoHaba','cantidadHaba')">
+          <option value="">Seleccione tipo</option>
+          <option value="Seca">Seca</option>
+          <option value="Fresca">Fresca</option>
+        </select>
+        <select id="cantidadHaba" style="display:none">
+          <option value="">Seleccione cantidad</option>
+          <option>1 kg</option>
+          <option>2 kg</option>
+          <option>5 kg</option>
+        </select>
+        <span class="btn-comprar" onclick="addToCart('Haba','tipoHaba','cantidadHaba')">Comprar</span>
+        <p style="color:#8b5e3c; font-size:0.9em;">Fresca disponible solo en temporada</p>
+      </div>
+    </div>
+
+    <!-- TUBÉRCULOS -->
+    <h2>Tubérculos y Hortalizas</h2>
+    <div class="product-list">
+      <div class="product">
+        <img src="papa.jpg" alt="Papas">
+        <h3>Papas</h3>
+        <select id="tipoPapa" onchange="mostrarCantidad('tipoPapa','cantidadPapa')">
+          <option value="">Seleccione variedad</option>
+          <option value="Waycha">Waycha</option>
+          <option value="Imilla">Imilla</option>
+          <option value="Ajahuiri">Ajahuiri</option>
+          <option value="Runta">Runta</option>
+          <option value="Nueva">Papa nueva</option>
+        </select>
+        <select id="cantidadPapa" style="display:none">
+          <option value="">Seleccione cantidad</option>
+          <option>1/2 arroba</option>
+          <option>1 arroba</option>
+          <option>2 arrobas</option>
+        </select>
+        <span class="btn-comprar" onclick="addToCart('Papas','tipoPapa','cantidadPapa')">Comprar</span>
+        <p style="color:#8b5e3c; font-size:0.9em;">Disponible solo en temporada</p>
+      </div>
+
+      <div class="product">
+        <img src="oca.jpg" alt="Oca">
+        <h3>Oca</h3>
+        <select id="cantidadOca">
+          <option value="">Seleccione cantidad</option>
+          <option>1 kg</option>
+          <option>2 kg</option>
+        </select>
+        <span class="btn-comprar" onclick="addToCart('Oca',null,'cantidadOca')">Comprar</span>
+        <p style="color:#8b5e3c; font-size:0.9em;">Disponible solo en temporada</p>
+      </div>
+
+      <div class="product">
+        <img src="cebolla.jpg" alt="Cebolla">
+        <h3>Cebolla</h3>
+        <select id="cantidadCebolla">
+          <option value="">Seleccione cantidad</option>
+          <option>1 kg</option>
+          <option>2 kg</option>
+          <option>5 kg</option>
+        </select>
+        <span class="btn-comprar" onclick="addToCart('Cebolla',null,'cantidadCebolla')">Comprar</span>
+      </div>
+
+      <div class="product">
+        <img src="choclo.jpg" alt="Choclo">
+        <h3>Choclo</h3>
+        <select id="cantidadChoclo">
+          <option value="">Seleccione cantidad</option>
+          <option>1 docena</option>
+          <option>2 docenas</option>
+        </select>
+        <span class="btn-comprar" onclick="addToCart('Choclo',null,'cantidadChoclo')">Comprar</span>
+        <p style="color:#8b5e3c; font-size:0.9em;">Disponible solo en temporada</p>
+      </div>
+    </div>
+
+    <!-- OTROS DE GRANJA -->
+    <h2>Otros de Granja</h2>
+    <div class="product-list">
+      <div class="product">
+        <img src="huevo.jpg" alt="Huevo criollo">
+        <h3>Huevo criollo</h3>
+        <select id="cantidadHuevo">
+          <option value="">Seleccione cantidad</option>
+          <option>1 unidad</option>
+          <option>1 docena</option>
+          <option>2 docenas</option>
+        </select>
+        <span class="btn-comprar" onclick="addToCart('Huevo criollo',null,'cantidadHuevo')">Comprar</span>
+      </div>
+    </div>
+
+    <!-- FORRAJE Y ABONO -->
+    <h2>Forraje y Abono</h2>
+    <div class="product-list">
+      <!-- Forraje verde (tipos) -->
+      <div class="product">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaNoLpSt6QtZvFwn1NMM5im6hNK2MDjd6PHA&s" alt="Alfalfa verde">
+        <h3>Forraje verde</h3>
+        <select id="tipoForraje" onchange="mostrarCantidad('tipoForraje','cantidadForraje')">
+          <option value="">Seleccione tipo</option>
+          <option value="Alfalfa">Alfalfa</option>
+          <option value="Clover">Clover</option>
+          <option value="Mixto">Mixto</option>
+        </select>
+        <select id="cantidadForraje" style="display:none">
+          <option value="">Seleccione cantidad</option>
+          <option>1 manojo</option>
+          <option>1 fardo</option>
+          <option>5 fardos</option>
+        </select>
+        <span class="btn-comprar" onclick="addToCart('Forraje verde','tipoForraje','cantidadForraje')">Comprar</span>
+        <p style="color:#8b5e3c; font-size:0.9em;">Disponible solo en temporada</p>
+      </div>
+
+      <!-- Forraje seco (pacas) -->
+      <div class="product">
+        <img src="forraje-seco.jpg" alt="Forraje seco">
+        <h3>Forraje seco (pacas)</h3>
+        <select id="tipoForrajeSeco" onchange="mostrarCantidad('tipoForrajeSeco','cantidadForrajeSeco')">
+          <option value="">Seleccione tipo</option>
+          <option value="Alfalfa Seco">Alfalfa Seco</option>
+          <option value="Hierba Seco">Hierba Seco</option>
+        </select>
+        <select id="cantidadForrajeSeco" style="display:none">
+          <option value="">Seleccione cantidad</option>
+          <option>1 paca</option>
+          <option>2 pacas</option>
+          <option>5 pacas</option>
+        </select>
+        <span class="btn-comprar" onclick="addToCart('Forraje seco','tipoForrajeSeco','cantidadForrajeSeco')">Comprar</span>
+      </div>
+
+      <!-- Abono (tipo y cantidad) -->
+      <div class="product">
+        <img src="abono.jpg" alt="Abono">
+        <h3>Abono</h3>
+        <select id="tipoAbono2" onchange="mostrarCantidad('tipoAbono2','cantidadAbono2')">
+          <option value="">Seleccione tipo</option>
+          <option value="Abono Vaca">Abono de vaca</option>
+          <option value="Abono Oveja">Abono de oveja</option>
+          <option value="Compost">Compost</option>
+        </select>
+        <select id="cantidadAbono2" style="display:none">
+          <option value="">Seleccione cantidad</option>
+          <option>25 kg</option>
+          <option>50 kg</option>
+          <option>100 kg</option>
+        </select>
+        <span class="btn-comprar" onclick="addToCart('Abono','tipoAbono2','cantidadAbono2')">Comprar</span>
+      </div>
+    </div> <!-- fin product-list for Forraje y Abono -->
+
+  </main>
+
+  <!-- Botón carrito -->
+  <button class="carrito-btn" onclick="sendToWhatsApp()">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="contador" id="contadorCarrito">0</span>
+  </button>
+
+  <!-- Notificación -->
+  <div class="notificacion" id="notificacion" role="status" aria-live="polite"></div>
+
+  <script>
+    // Carrito en memoria (temporal)
+    let cart = [];
+
+    /**
+     * Muestra el selector de cantidad cuando se selecciona un tipo/variedad.
+     * @param {string} tipoId - id del select de tipo/variedad
+     * @param {string} cantidadId - id del select de cantidad
+     */
+    function mostrarCantidad(tipoId, cantidadId) {
+      const tipoEl = document.getElementById(tipoId);
+      const cantidadEl = document.getElementById(cantidadId);
+      if (!cantidadEl) return;
+      cantidadEl.style.display = tipoEl && tipoEl.value ? 'block' : 'none';
+    }
+
+    /**
+     * Añade un ítem al carrito.
+     * producto: nombre (string)
+     * tipoId: id del select de tipo (o null)
+     * cantidadId: id del select de cantidad (o null)
+     */
+    function addToCart(producto, tipoId, cantidadId) {
+      // Obtener tipo si corresponde
+      let tipo = '';
+      if (tipoId) {
+        const elTipo = document.getElementById(tipoId);
+        if (!elTipo) {
+          // si el id no existe, tratamos como sin tipo
+          tipo = '';
+        } else {
+          tipo = elTipo.value;
+        }
+      }
+
+      // Obtener cantidad si corresponde
+      let cantidad = '';
+      if (cantidadId) {
+        const elCant = document.getElementById(cantidadId);
+        if (!elCant) {
+          cantidad = '';
+        } else {
+          cantidad = elCant.value;
+        }
+      }
+
+      // Validaciones básicas
+      if (tipoId && !tipo) {
+        mostrarAlerta("Selecciona el tipo de " + producto);
+        return;
+      }
+      if (cantidadId && !cantidad) {
+        mostrarAlerta("Selecciona la cantidad de " + producto);
+        return;
+      }
+
+      // Construir texto del ítem
+      let itemText = producto;
+      if (tipo) itemText += " (" + tipo + ")";
+      if (cantidad) itemText += " - " + cantidad;
+
+      // Añadir al carrito
+      cart.push(itemText);
+
+      // Actualizar contador
+      document.getElementById('contadorCarrito').textContent = cart.length;
+
+      // Mostrar notificación elegante
+      mostrarNotificacion(itemText + " agregado al carrito 🛒");
+    }
+
+    function mostrarNotificacion(texto) {
+      const noti = document.getElementById('notificacion');
+      noti.textContent = texto;
+      noti.style.display = 'block';
+      // animación simple: aparece y desaparece
+      setTimeout(()=> {
+        noti.style.display = 'none';
+      }, 2300);
+    }
+
+    function mostrarAlerta(texto) {
+      // fallback a alert si prefieres, pero usamos la notificación
+      mostrarNotificacion(texto);
+    }
+
+    /**
+     * Enviar pedido por WhatsApp con los items del carrito.
+     * Puedes cambiar el número por el tuyo.
+     */
+    function sendToWhatsApp() {
+      if (cart.length === 0) {
+        mostrarNotificacion("Tu carrito está vacío 😢");
+        return;
+      }
+      const telefono = '59163634228'; // reemplaza si hace falta
+      const mensaje = "Hola, quiero comprar:\n- " + cart.join("\n- ");
+      const url = "https://wa.me/" + telefono + "?text=" + encodeURIComponent(mensaje);
+      window.open(url, '_blank');
+    }
+  </script>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Rosario Challapata - Todos los derechos reservados
+  </footer>
+</body>
+</html>

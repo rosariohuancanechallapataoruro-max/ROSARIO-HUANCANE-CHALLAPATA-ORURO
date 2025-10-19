@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería - Rosario Challapata</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #2c1e17;
+      margin: 0;
+      padding: 0;
+      color: #f2e6d9;
+      padding-top: 120px; /* espacio para el header */
+      scroll-behavior: smooth; /* 🔹 desplazamiento suave */
+    }
+
+    /* ENCABEZADO */
+    header {
+      background: linear-gradient(to right, rgba(139, 94, 60, 0.95), rgba(75, 46, 30, 0.98));
+      color: white;
+      padding: 10px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(6px);
+    }
+
+    header h1 { font-size: 2em; font-weight: 700; margin-bottom: 10px; text-transform: uppercase; }
+    nav { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
+    nav a { text-decoration: none; color: white; font-weight: 600; transition: 0.3s; }
+    nav a:hover { color: #ffcc70; }
+    }a
+
+    //* Botón Ver Galería */
+  btn-galeria {
+  display: block;
+  width: max-content;
+  margin: 30px auto;
+  padding: 20px 45px; /* 🔹 más grande */
+  background: linear-gradient(135deg, #a47449, #d9a066); /* 🔹 degradado tierra-dorado */
+  color: beige;
+  font-size: 1.2em; /* 🔹 texto más grande */
+  font-weight: bold;
+  border-radius: 40px;
+  text-decoration: none;
+  transition: 0.3s;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.btn-galeria:hover {
+  background: linear-gradient(135deg, #ffcc70, #c97b3e); /* 🔹 resalta más dorado */
+  color: #2c1e17;
+}
+
+    /* Galería */
+    .galeria {
+      position: relative;
+      max-width: 90%;
+      height: 400px;
+      margin: 40px auto;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+      scroll-margin-top: 140px; /* 🔹 evita que se esconda bajo el header */
+    }
+
+    .galeria-contenedor {
+      display: flex;
+      width: 1000%;
+      height: 100%;
+      /* 🔹 Por defecto sin animación */
+    }
+
+    .galeria-contenedor img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* 🔹 Clase activa para empezar animación */
+    .activo {
+      animation: deslizar 40s infinite linear;
+    }
+
+    @keyframes deslizar {
+      0% { transform: translateX(0); }
+      10% { transform: translateX(0); }
+      20% { transform: translateX(-10%); }
+      30% { transform: translateX(-20%); }
+      40% { transform: translateX(-30%); }
+      50% { transform: translateX(-40%); }
+      60% { transform: translateX(-50%); }
+      70% { transform: translateX(-60%); }
+      80% { transform: translateX(-70%); }
+      90% { transform: translateX(-80%); }
+      100% { transform: translateX(-90%); }
+    }
+
+    .content {
+      padding: 60px 80px;
+      text-align: center;
+    }
+
+    .content h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #8b5e3c;
+    }
+
+    .content p {
+      font-size: 1.2em;
+      line-height: 1.8em;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Novedades */
+    .novedades {
+      padding: 50px;
+      background-color: #3e2723;
+      text-align: center;
+    }
+
+    .novedades h2 {
+      color: #ffcc70;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .novedades ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .novedades ul li {
+      background: #5d4037;
+      margin: 10px auto;
+      padding: 15px;
+      border-radius: 15px;
+      max-width: 600px;
+      font-size: 1.1em;
+    }
+
+    footer {
+      background: #8b5e3c;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Encabezado -->
+  <header>
+    <h1>🌄 Galería de Huancané - Rosario, Oruro</h1>
+    <nav>
+      <a href="rosario3.html">Inicio</a>
+      <a href="galeria.html">Galería</a>
+      <a href="novedades.html">Novedades</a>
+      <a href="tienda virtual.html">Tienda</a>
+      <a href="historia.html">Historia</a>
+    </nav>
+  </header>
+
+  <!-- Botón -->
+  <button class="btn-galeria" onclick="iniciarGaleria()">🎥 Ver Galería</button>
+
+  <!-- Galería -->
+  <section id="galeria" class="galeria">
+    <div class="galeria-contenedor" id="galeriaContenedor">
+      <img src="campo2.jpg" alt="Imagen 1">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThEeHisclf35rjTG05r1oJQmX_8HkaRuQmyw&s" alt="Imagen 2">
+      <img src="https://previews.123rf.com/images/flaperval/flaperval1702/flaperval170200070/71985545-the-andean-landscape-with-herd-of-llamas-with-the-parinacota-volcano-on-background-sajama-national.jpg" alt="Imagen 3">
+      <img src="https://abi.bo/images/2025/Abril/09/Zanahoriita.jpg" alt="Imagen 4">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7BFnZML_ADFK3O6Mu8QGIj-_Prc2RYtGqYA&s" alt="Imagen 5">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScQ5tcqyMNHxOfoc9TbdsBzP5PUgkHUTIzMkwADT4DhA3S_WKY_Hw3N3VlhuS1BZX5_D0&usqp=CAU" alt="Imagen 6">
+      <img src="https://www.proinpa.org/web/wp-content/uploads/2021/04/diacampoankasocaportada.jpg" alt="Imagen 7">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3yls79f6heoWl_ptB3Zt1oOi3gPCbiG8aCLLY5DAImE17RdWsxFBlSlIISQS0y11AX40&usqp=CAU" alt="Imagen 8">
+      <img src="https://www.urgente.bo/sites/default/files/Campesinos%20hoy_0.jpg" alt="Imagen 9">
+      <img src="https://i.ytimg.com/vi/OnlpWSL8Dfk/sddefault.jpg" alt="Imagen 10">
+    </div>
+  </section>
+
+  <section class="content">
+    <h2>Lo mejor de nuestra tierra</h2>
+    <p>
+      Aquí encontrarás la historia, la cultura y la gastronomía que hacen única a Rosario Challapata. 
+      Disfruta de recetas tradicionales, eventos locales y el sabor auténtico de nuestros productos.
+    </p>
+  </section>
+
+  <!-- Novedades -->
+  <section class="novedades">
+    <h2>🆕 Novedades</h2>
+    <ul>
+      <li>🌾 Feria agrícola programada para octubre.</li>
+      <li>🎶 Festival cultural con danzas típicas.</li>
+      <li>🍲 Nuevas recetas añadidas a la sección de gastronomía.</li>
+    </ul>
+  </section>
+
+  <footer>
+    © 2025 Rosario Challapata - Todos los derechos reservados
+  </footer>
+
+  <script>
+    function iniciarGaleria() {
+      // activa la animación
+      document.getElementById("galeriaContenedor").classList.add("activo");
+      
+    }
+  </script>
+</body>
+</html>

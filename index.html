@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Página GitHub</title>
+  
+  <!-- Estilos CSS -->
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f0f0f0;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background-color: #333;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #4CAF50;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 20px auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+    }
+
+    /* Media Queries para móviles */
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+      }
+
+      nav a {
+        padding: 10px;
+      }
+
+      .container {
+        width: 95%;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Bienvenido a mi Página</h1>
+  </header>
+
+  <nav>
+    <a href="rosario3.html">INICIO</a>
+     <a href="eventos.html">EVENTOS</a>
+      <a href="galeria.html">GALERÍA</a>
+      <a href="novedades.html">NOVEDADES</a>
+      <a href="tienda virtual.html">TIENDA</a>
+      <a href="historia.html">HISTORIA</a>
+  </nav>
+
+  <div class="container">
+    <h1>Sección Principal</h1>
+    <p>Este es un ejemplo de página web responsiva para GitHub Pages. Todo el contenido se adapta al tamaño de la pantalla automáticamente.</p>
+    <p>Puedes agregar más secciones, imágenes y enlaces aquí. Las imágenes se escalarán correctamente si usas CSS responsivo.</p>
+    <img src="https://via.placeholder.com/800x400" alt="Imagen de ejemplo" style="width:100%; height:auto; border-radius:10px;">
+  </div>
+
+  <footer>
+    &copy; 2025 Mi Página GitHub
+  </footer>
+
+</body>
+</html>
